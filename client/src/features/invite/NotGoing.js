@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { showGoing, selectGoing } from "../invite/goingSlice.js"
+import { showNotGoing, selectNotGoing } from "./notGoingSlice.js"
 
-export default function Going() {
+export default function NotGoing() {
   const dispatch = useDispatch()
-  const usersGoing = {
+  const usersNotGoing = {
     results: [
     {
     gender: "male",
@@ -70,19 +70,19 @@ export default function Going() {
     version: "1.3"
     }
     }
-  console.log(usersGoing)
+  console.log(usersNotGoing)
 
   useEffect(() => {
-    dispatch(showGoing())
+    dispatch(showNotGoing())
   }, [])
 
   return (
-    <div className="goingContainer">
-      <div className="goingHeader">
-        <h1>Going</h1>
+    <div className="isNotGoingContainer">
+      <div className="isNotGoingHeader">
+        <h1>Not Going</h1>
       </div>
-      <div className="goingBody">
-        {usersGoing.map((item) => (
+      <div className="isGoingBody">
+        {usersNotGoing.map((item) => (
           <div>
             <div className="goingUser">
               <div className="userImage">

@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import './App.css';
 import GoingPage from './features/invite/GoingPage';
-import NotGoingPage from './features/invite/NotGoingPage';
+import NotGoing from './features/invite/NotGoing';
 import InvitePage from './features/invite/InvitePage';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <GoingPage />
         </Route>
         <Route path="/not-going">
-          <NotGoingPage />
+          <NotGoing />
         </Route>
       </Switch>
     </Router>
