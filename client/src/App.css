@@ -4,21 +4,29 @@
     box-sizing: border-box;
   }
   html {
-    font-size: 14px;
+    font-size: 12px;
   }
-  .randomUser {
+
+  .container{
     display: flex;
     flex-direction: column;
-    border: solid 1px #e0e0e0;
-    width: 20%;
+    justify-content: center;
+    align-items: center;
+  }
+  .randomUserContainer {
+
+    display: flex;
+    flex-direction: column;
+    width: 35%;
     height: 400px;
     justify-content: center;
     align-items: center;
     background: #eeeeee;
   }
   
-  .profilePic {
+  .profile {
     border-radius: 50%;
+    border: 1px solid rgb(20,20,20)
   }
   
   .userInfo {
@@ -46,6 +54,7 @@
     justify-content: space-evenly;
   }
   .goingBtn {
+    color: white;
     height: 40px;
     width: 60px;
     background: #67ac5b;
@@ -53,6 +62,7 @@
     border: none;
   }
   .notGoingBtn {
+    color: white;
     height: 40px;
     width: 60px;
     background: #e25241;
@@ -84,4 +94,10 @@
     top: 25px;
     left: 45px;
     border-radius: 50%;
+  }
+
+  .goingOrNotGoing {
+    width: 35%;
+    display: flex;
+    justify-content: space-around;
   }

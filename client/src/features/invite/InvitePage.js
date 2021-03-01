@@ -8,78 +8,15 @@ import {
 } from "./inviteSlice.js"
 import { selectGoing } from "./goingSlice.js"
 import { selectNotGoing } from "./notGoingSlice.js"
-import axios from 'axios'
+import { FaCheck, FaTimes } from 'react-icons/fa';
+import axios from 'axios';
+// import crazyCage from "./CrazyCage";
 
 export default function InvitePage() {
 
+    const [invitee, setInvitee] = useState({})
+
     const dispatch = useDispatch()
-    const invitee = {
-        results: [
-        {
-        gender: "male",
-        name: {
-        title: "Mr",
-        first: "Mathis",
-        last: "Liu"
-        },
-        location: {
-        street: {
-        number: 6353,
-        name: "Queen St"
-        },
-        city: "Charlottetown",
-        state: "Newfoundland and Labrador",
-        country: "Canada",
-        postcode: "F9W 0J5",
-        coordinates: {
-        latitude: "-59.9688",
-        longitude: "-119.4580"
-        },
-        timezone: {
-        offset: "+9:30",
-        description: "Adelaide, Darwin"
-        }
-        },
-        email: "mathis.liu@example.com",
-        login: {
-        uuid: "a8eac252-d17a-4aa9-9f91-246316265a4a",
-        username: "organicbutterfly239",
-        password: "xiao",
-        salt: "2fDNQQMv",
-        md5: "025c8f609c53b0ae5dbb7d979a2d9a44",
-        sha1: "dedf9afc20e65c9aefab58d2329dcdf83eb8372e",
-        sha256: "5f9b2af95267d2052142354915e8ba5b294280797d379039d8401f78ca936b7c"
-        },
-        dob: {
-        date: "1960-01-26T15:58:38.462Z",
-        age: 61
-        },
-        registered: {
-        date: "2009-01-14T20:04:41.514Z",
-        age: 12
-        },
-        phone: "141-436-2618",
-        cell: "976-800-0144",
-        id: {
-        name: "",
-        value: null
-        },
-        picture: {
-        large: "https://randomuser.me/api/portraits/men/19.jpg",
-        medium: "https://randomuser.me/api/portraits/med/men/19.jpg",
-        thumbnail: "https://randomuser.me/api/portraits/thumb/men/19.jpg"
-        },
-        nat: "CA"
-        }
-        ],
-        info: {
-        seed: "59a464f6b04602f4",
-        results: 1,
-        page: 1,
-        version: "1.3"
-        }
-        }
-    // useSelector(selectInvitee) 
     const usersGoing = {
         results: [
         {
@@ -214,28 +151,30 @@ export default function InvitePage() {
         }
   
     console.log(invitee)
-    console.log(usersGoing)
-    console.log(usersNotGoing)
+    // console.log(usersGoing)
+    // console.log(usersNotGoing)
 
 
     // refactor to use slice
     useEffect(() => {
-        axios.get('/')
+        axios.get('/results')//{headers: {"Access-Control-Allow-Origin": "*"}})
         .then(resp => {
-            console.log(resp)
+            console.log(resp.data)
+            console.log('test')
+            setInvitee(resp.data)
         })
     }, [])
     return (
         <div className="container">
         <div className="goingOrNotGoing">
-          <div>Going: {usersGoing.length}</div>{" "}
-          <div>Not Going: {usersNotGoing.length}</div>
+          <div>Going: <strong>1235 peeps</strong></div>{" "}
+          <div>Not Going: <strong>Crazy Nick Cage</strong></div>
         </div>
-        <div className="randomUser">
+        <div className="randomUserContainer">
           <div className="userImage">
             <img
-              className="profilePic"
-              src={invitee.imgLarge}
+              className="profile"
+              src={usersGoing.results[0].picture.large}
               alt="profile picture"
             ></img>
           </div>
@@ -255,13 +194,13 @@ export default function InvitePage() {
               onClick={() => dispatch(notGoingUser(invitee))}
               className="notGoingBtn"
             >
-              not going
+              <FaTimes />
             </button>
             <button
               onClick={() => dispatch(isGoingUser(invitee))}
               className="goingBtn"
             >
-              is going
+              <FaCheck />
             </button>
           </div>
         </div>

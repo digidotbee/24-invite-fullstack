@@ -16,7 +16,7 @@ export const inviteSlice = createSlice({
 export const { display } = inviteSlice.actions
 
 export const getUser = () => (dispatch) => {
-  axios.get("randomuser.me/api").then((r) => dispatch(display(r.data)))
+  axios.get("randomuser.me/api").then((resp) => dispatch(display(resp.data)))
 }
 
 export const isGoingUser = (user) => (dispatch) => {
