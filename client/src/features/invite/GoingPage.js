@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { showGoing, selectGoing } from "../invite/goingSlice.js"
+import axios from 'axios'
 
 export default function Going() {
+
+  const [users, setUsers] = useState([])
+
   const dispatch = useDispatch()
   const usersGoing = {
     results: [
@@ -73,11 +77,14 @@ export default function Going() {
   console.log(usersGoing)
 
   useEffect(() => {
-    dispatch(showGoing())
+    axios.get('/going')
+    .then(resp => {
+      setUsers(resp.data)
+    })
   }, [])
 
   return (
-    <div className="goingContainer">
+    <div className="container">
       <div className="goingHeader">
         <h1>Going</h1>
       </div>

@@ -6,11 +6,11 @@ const axios = require("axios");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // app.use(cors)
-// const users = {
-//   going: [],
-//   notGoing: [],
-//   currentUser: {},
-// };
+const users = {
+  going: [],
+  notGoing: [],
+  currentUser: {},
+};
 
 app.get("/results", (req, res) => {
     axios.get("http://randomuser.me/api/")
@@ -27,6 +27,16 @@ app.get("/results", (req, res) => {
     })
 })
 
+app.post('mark-invitee', (req, res) =>{
+    const incomingUser = req.body
+    const userGoing = incomingUser.going
+    if (userGoing) {
+        goingUsers.push(incomingUser)
+    } else {
+        notGoingUsers.push(incomingUser)
+    }
+    res.join({message: 'user added to invites', user: incomingUser})
+})
 
 app.get("/going", (req, res) => {
     console.log('please work')
