@@ -10,7 +10,7 @@ import { selectGoing } from "./goingSlice.js"
 import { selectNotGoing } from "./notGoingSlice.js"
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import axios from 'axios';
-// import crazyCage from "./CrazyCage";
+import {Link} from "react-router-dom";
 
 export default function InvitePage() {
 
@@ -36,8 +36,10 @@ export default function InvitePage() {
     return (
         <div className="container">
         <div className="goingOrNotGoing">
-          <div>Going: <strong>1235 peeps</strong></div>{" "}
-          <div>Not Going: <strong>Crazy Nick Cage</strong></div>
+        <Link to={`/going`} className = "linkToGoing"> 
+            <p>Going: {isGoingUser.length} </p></Link>
+        <Link to={`/notGoing`} className = "linkToNotGoing">  
+            <p>Not Going: {notGoingUser.length} </p></Link>
         </div>
         <div className="randomUserContainer">
           <div className="userImage">
